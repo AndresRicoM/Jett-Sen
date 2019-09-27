@@ -1,3 +1,21 @@
+#
+#      ██╗███████╗████████╗████████╗   ███████╗███████╗███╗   ██╗
+#      ██║██╔════╝╚══██╔══╝╚══██╔══╝   ██╔════╝██╔════╝████╗  ██║
+#      ██║█████╗     ██║      ██║█████╗███████╗█████╗  ██╔██╗ ██║
+# ██   ██║██╔══╝     ██║      ██║╚════╝╚════██║██╔══╝  ██║╚██╗██║
+# ╚█████╔╝███████╗   ██║      ██║      ███████║███████╗██║ ╚████║
+#  ╚════╝ ╚══════╝   ╚═╝      ╚═╝      ╚══════╝╚══════╝╚═╝  ╚═══╝
+#
+#   Sensorized Panasonic Jetter Hackable Bike
+#   Andres Rico - MIT Media Lab - aricom@mit.edu - www.andresrico.xyz
+#
+#
+#
+#
+#
+#
+
+
 import RPi.GPIO as GPIO #Import Library for GPIO Communication.
 import time
 import Termite_Access
@@ -6,7 +24,7 @@ from time import sleep
 import datetime
 import subprocess
 import pigpio
-import difflib                
+import difflib
 
 def data_activation():
     path = '/home/pi/hackbikeARICOM/cmd'
@@ -20,7 +38,7 @@ def getBikeData():
 
     #print(headlightData)
 
-    #Get Battery State Data. 
+    #Get Battery State Data.
     batteryData = subprocess.check_output([path + '/getBattery' , '-1'], shell=True)
 
     battery_list = []
@@ -29,10 +47,10 @@ def getBikeData():
             battery_list.append(float(t))
         except ValueError:
             pass
-    
+
     #print(battery_list)
 
-    #Get Crank State Data. 
+    #Get Crank State Data.
     crankData = subprocess.check_output([path + '/getCrank' , '-1'], shell=True)
 
     crank_list = []
@@ -41,10 +59,10 @@ def getBikeData():
             crank_list.append(float(t))
         except ValueError:
                 pass
-    
+
     #print(crank_list)
 
-    #Get Drive State Date. 
+    #Get Drive State Date.
     driveData = subprocess.check_output([path + '/getDrive' , '-1'], shell=True)
 
     drive_list = []
@@ -53,7 +71,7 @@ def getBikeData():
             drive_list.append(float(t))
         except ValueError:
             pass
-    
+
     #print(drive_list)
 
     #Get Mode State Data.
@@ -65,19 +83,19 @@ def getBikeData():
             mode_list.append(float(t))
         except ValueError:
             pass
-        
+
     complete_data = []
     complete_data.extend(headlightData)
     complete_data.extend(battery_list)
     complete_data.extend(crank_list)
     complete_data.extend(drive_list)
     complete_data.extend(mode_list)
-        
+
     return complete_data
-        
+
 
 if __name__== "__main__":
-    
+
     main_path = '/home/pi/hackbikeARICOM/'
     data_path = '/home/pi/hackbikeARICOM/data/'
     print("TerMITe Connecting....")
@@ -91,7 +109,7 @@ if __name__== "__main__":
     data_acquisition = False #Variable for activation and deactivation of data collection.
 
     while True: #Main loop.
-        if data_acquisition == False and data_activation() == 1: #Check if touch sensor has been activated. 
+        if data_acquisition == False and data_activation() == 1: #Check if touch sensor has been activated.
                 data_acquisition = True
                 #time.sleep(.4)
                 datestring = str(datetime.datetime.now())
@@ -99,15 +117,15 @@ if __name__== "__main__":
                 new_file = open(data_path + datestring,"w")
                 subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True)
                 print("Data Collection Enabeled")
-                
-        if data_acquisition == True and data_activation() == 0: #Check for sensor activation to shutdown data colection. 
+
+        if data_acquisition == True and data_activation() == 0: #Check for sensor activation to shutdown data colection.
                 data_acquisition = False
                 #time.sleep(.4)
                 new_file.close()
                 subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True)
                 print("Data Collection Diabeled")
                 #time.sleep(2)
-                
+
         if data_acquisition == True: #Enter if data collection is active.
             timestamp = str(datetime.datetime.now().time())
             bikeData = str(getBikeData())
