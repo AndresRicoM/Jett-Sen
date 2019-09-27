@@ -10,9 +10,9 @@
 #   Andres Rico - MIT Media Lab - aricom@mit.edu - www.andresrico.xyz
 #
 #   Main script for collecting data from GPS Module.
-#   The system uses a Gowoops GPS Module with TTL Ceramic Passive Antenna.
+#   A Raspberry Pi Camera Module is used in this implementation.
 #
-#   This script can work in parallel with Bike/terMITe and Camera data collection scripts (main.py & camera.py)
+#   This script can work in parallel with Bike/terMITe and GPS data collection scripts (gps_main.py & camera.py)
 
 import sys
 import pigpio                                                                   #Library for managing TX/RX communication on I/O pins in Raspberry Pi 3+
@@ -99,4 +99,4 @@ if __name__== "__main__":
             gpsData = gpsData[1:-1]                                             #Format GPS data by taking [] out.
             gpsData = gpsData.replace("'", " ")
             print(timestamp[:11] + " , " + gpsData)
-            new_file.write(timestamp[:11] + "," + gpsData +  "\n")              #Write data into file.   
+            new_file.write(timestamp[:11] + "," + gpsData +  "\n")              #Write data into file.

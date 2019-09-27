@@ -11,7 +11,7 @@
 #
 #   Main script for collecting data from Panasonic Bike Module and MIT terMITe sensor.
 #   Data from bike and data from environmental sensor are concatenated and stored within a timestamped file.
-#   This scriot can work in parallel with GPS and Camera data collection scripts (gps_main.py & camera.py)
+#   This script can work in parallel with GPS and Camera data collection scripts (gps_main.py & camera.py)
 
 
 import RPi.GPIO as GPIO                                                         #Import Library for GPIO Communication.
@@ -111,7 +111,7 @@ if __name__== "__main__":
     data_acquisition = False #Variable for activation and deactivation of data collection.
 
     while True: #Main loop.
-        if data_acquisition == False and data_activation() == 1: #Check if touch sensor has been activated.
+        if data_acquisition == False and data_activation() == 1: #Check if headlight has been activated.
                 data_acquisition = True
                 datestring = str(datetime.datetime.now())
                 datestring = datestring + ".txt"
