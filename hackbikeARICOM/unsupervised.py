@@ -6,10 +6,21 @@ from sklearn.datasets.samples_generator import make_blobs
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples
 from mpl_toolkits.mplot3d import Axes3D
+import os
 
 #X, y_true = make_blobs(n_samples=300, centers=4,
 #                       cluster_std=0.60, random_state=0)
-current_data = np.genfromtxt('/home/aricom/Desktop/HackBike/2019-10-17 16_36_17.625353.txt', delimiter = ',',  dtype='str')
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+print(dir_path)
+
+data_file = 'test_data.csv'
+data_path = os.path.join(dir_path, 'data', data_file)
+
+print(data_path)
+
+current_data = np.genfromtxt(data_path, delimiter = ',',  dtype='str')
 torque = current_data[:,[7]]
 torque = torque.astype(np.float)
 x_accel = current_data[:,[19]]
