@@ -1,0 +1,4 @@
+*.pyc
+
+hackbikeARICOM/cmd/
+hackbikeARICOM/__pychache__/
