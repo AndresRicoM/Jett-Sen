@@ -26,14 +26,14 @@ import difflib
 #Function for checking status of headlight for activation of data collection.
 #Data collection is enabeled by turning on headlights.
 def data_activation():
-    path = '/home/pi/hackbikeARICOM/cmd'
+    path = '/home/pi/Jett-Sen/hackbikeARICOM/cmd'
     data_active = subprocess.check_output([ path + '/getHeadLight' , '-1'], shell=True) #Gets HeadLight Status (0 = OFF , 1 = ON)
     return float(data_active)                                                   #Returns float with headlight value.
 
 
 #Function for extracting bike sensor data.
 def getBikeData():
-    path = '/home/pi/hackbikeARICOM/cmd'                                        #Specifies path for Panasonic Bike commands.
+    path = '/home/pi/Jett-Sen/hackbikeARICOM/cmd'                                        #Specifies path for Panasonic Bike commands.
 
     #headlightData = subprocess.check_output([path + '/getHeadLight' , '-1'], shell=True)       #Uncomment if headlight data is desired. In this implementation it will always be 1 when recording.
     #headlightData = [float(headlightData[0])] #State of Headlight
@@ -98,8 +98,8 @@ def getBikeData():
 
 if __name__== "__main__":
 
-    main_path = '/home/pi/hackbikeARICOM/'
-    data_path = '/home/pi/hackbikeARICOM/data/'
+    main_path = '/home/pi/Jett-Sen/hackbikeARICOM/'
+    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/data/'
     print("TerMITe Connecting....")
     TF = Termite_Access.termiteObject() #Find a terMITe.
     TF.activateCSV() #Swith terMITe output to CSV - Can choose JSON as well.
@@ -116,13 +116,13 @@ if __name__== "__main__":
                 datestring = str(datetime.datetime.now())
                 datestring = datestring + ".txt"
                 new_file = open(data_path + datestring,"w")                     #Create new file with data stamp name.
-                subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
+                subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
                 print("Data Collection Enabeled")
 
         if data_acquisition == True and data_activation() == 0: #Check for sensor activation to shutdown data colection.
                 data_acquisition = False
                 new_file.close()                                                #Close file when collection is disabeled.
-                subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
+                subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
                 print("Data Collection Diabeled")
                 #time.sleep(2)
 
