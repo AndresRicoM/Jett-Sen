@@ -60,7 +60,7 @@ def getgps():
 #Function for checking status of headlight for activation of data collection.
 #Data collection is enabeled by turning on headlights.
 def data_activation():
-    path = '/home/pi/hackbikeARICOM/cmd'
+    path = '/home/pi/Jett-Sen/hackbikeARICOM/cmd'
     data_active = subprocess.check_output([ path + '/getHeadLight' , '-1'], shell=True) #Gets HeadLight Status (0 = OFF , 1 = ON)
     return float(data_active)                                                   #Returns float with headlight value.
 
@@ -68,8 +68,8 @@ def data_activation():
 
 if __name__== "__main__":
 
-    main_path = '/home/pi/hackbikeARICOM/'                                      #Declare main path for scripts.
-    data_path = '/home/pi/hackbikeARICOM/gps_data/'                             #Declare path for storing data files.
+    main_path = '/home/pi/Jett-Sen/hackbikeARICOM/'                                      #Declare main path for scripts.
+    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/gps_data/'                             #Declare path for storing data files.
 
     print 'GPS has been activated'
 
