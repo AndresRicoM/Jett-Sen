@@ -27,7 +27,7 @@ import difflib
 import json
 
 cmd_path = '/home/pi/hackbicycle/cmd'
-is_bluetooth = True
+is_bluetooth = False
 
 #Function for checking status of headlight for activation of data collection.
 #Data collection is enabeled by turning on headlights.
