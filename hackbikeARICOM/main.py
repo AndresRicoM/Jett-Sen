@@ -27,7 +27,7 @@ import difflib
 import json
 
 cmd_path = '/home/pi/hackbicycle/cmd'
-is_bluetooth = False
+is_bluetooth = True
 
 #Function for checking status of headlight for activation of data collection.
 #Data collection is enabeled by turning on headlights.
@@ -38,7 +38,7 @@ def data_activation():
     	with open(status_json_path, 'r') as f:
     	    try:
     	        status = json.load(f)
-    	       is_recording = status['record']
+    	        is_recording = status['record']
     	    except ValueError:
     	        print("could not parse json data")
     	        pass
@@ -147,7 +147,8 @@ if __name__== "__main__":
 
     print("Ready To Collect Data!")
 
-    subprocess.call(['sudo python3 ' + main_path +  'data_indicator_light.py 1' , '-1'], shell=True)
+    if not is_bluetooth:
+        subprocess.call(['sudo python3 ' + main_path +  'data_indicator_light.py 1' , '-1'], shell=True)
 
     data_acquisition = False #Variable for activation and deactivation of data collection.
 
