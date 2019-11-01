@@ -135,4 +135,4 @@ if __name__== "__main__":
             print(timestamp[:11] + " , " + bikeData + " , " + TF.termiteValue)
             new_file.write(timestamp[:11] + "," + bikeData  + " , " + TF.termiteValue) #Write terMITe data with timestamp.
             #print(TR.termiteValue)
-            time.sleep(0.4)                                                     #Sampling at a rate of .5 s per data point.
+            time.sleep(0.15)                                                     #Sampling at a rate of .5 s per data point.
