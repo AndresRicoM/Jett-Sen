@@ -159,7 +159,7 @@ if __name__== "__main__":
             datestring = datestring + ".txt"
             new_file = open(data_path + datestring,"w")                     #Create new file with data stamp name.
             if not is_bluetooth:
-            	subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
+            	subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
             else :
                 set_light(data_acquisition)
                 
@@ -169,7 +169,7 @@ if __name__== "__main__":
             data_acquisition = False
             new_file.close()                                                #Close file when collection is disabeled.
             if not is_bluetooth:
-                subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
+                subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
             else:
                 set_light(data_acquisition)
             print("Data Collection Diabeled")
