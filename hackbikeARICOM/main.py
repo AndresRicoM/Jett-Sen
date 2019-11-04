@@ -125,7 +125,7 @@ def set_light(flag):
 if __name__== "__main__":
 
     main_path = '/home/pi/Jett-Sen/hackbikeARICOM/'
-    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/data/'
+    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/jupyter_data/main_data/' #Change last two lines depending on the bike running the program. 
     print("TerMITe Connecting....")
 
     num_tries = 5
