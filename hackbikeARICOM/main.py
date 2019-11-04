@@ -125,7 +125,7 @@ def set_light(flag):
 if __name__== "__main__":
 
     main_path = '/home/pi/Jett-Sen/hackbikeARICOM/'
-    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/data/'
+    data_path = '/home/pi/Jett-Sen/hackbikeARICOM/jupyter_data/main_data/' #Change last two lines depending on the bike running the program. 
     print("TerMITe Connecting....")
 
     num_tries = 5
@@ -159,7 +159,7 @@ if __name__== "__main__":
             datestring = datestring + ".txt"
             new_file = open(data_path + datestring,"w")                     #Create new file with data stamp name.
             if not is_bluetooth:
-            	subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
+            	subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
             else :
                 set_light(data_acquisition)
                 
@@ -169,7 +169,7 @@ if __name__== "__main__":
             data_acquisition = False
             new_file.close()                                                #Close file when collection is disabeled.
             if not is_bluetooth:
-                subprocess.call(['sudo python3 /home/pi/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
+                subprocess.call(['sudo python3 /home/pi/Jett-Sen/hackbikeARICOM/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
             else:
                 set_light(data_acquisition)
             print("Data Collection Diabeled")
