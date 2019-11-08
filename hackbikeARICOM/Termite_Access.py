@@ -55,6 +55,7 @@ class termiteObject(object):
             thread = Thread(target=self.termiteRunner, args=())
             thread.daemon = True  # Daemonize
             thread.start()
+        # scripts that uses this class will need this Exception to try catch
         except SerialException:
             raise Exception("Could not start SliderScope.... port already open.... or not found.... check with Carson")
 
