@@ -4,18 +4,16 @@
 
 #  ████████╗███████╗██████╗ ███╗   ███╗██╗████████╗███████╗███████╗     \         /
 #  ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║╚══██╔══╝██╔════╝██╔════╝      `-.`-'.-'
-#     ██║   █████╗  ██████╔╝██╔████╔██║██║   ██║   █████╗  ███████╗      ,:--.--:.
-#     ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║   ██║   ██╔══╝  ╚════██║     / |  |  | \
-#     ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║   ██║   ███████╗███████║      /\  |  /\
-#     ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝   ╚═╝   ╚══════╝╚══════╝      | `.:.' |
+#       ██║   █████╗  ██████╔╝██╔████╔██║██║   ██║   █████╗  ███████╗      ,:--.--:.
+#       ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║   ██║   ██╔══╝  ╚════██║     / |  |  | \
+#       ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║   ██║   ███████╗███████║      /\  |  /\
+#      ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝   ╚═╝   ╚══════╝╚══════╝      | `.:.' |
 
 #Carson Smuts - MIT 2019
 #******************************************************************************/
 
-
 #TerMITe_Seeker : Carson Smuts
 # WRITTEN FOR HACK A BIKE Project
-
 
 #
 #A simple class to seek out, connect, and read from TerMITes.
@@ -58,8 +56,7 @@ class termiteObject(object):
             thread.daemon = True  # Daemonize
             thread.start()
         except SerialException:
-            print ("Could not start SliderScope.... port already open.... or not found.... check with Carson")
-
+            raise Exception("Could not start SliderScope.... port already open.... or not found.... check with Carson")
 
     def activateJSON(self):
         termitePort.write(str.encode("CMD\r\n"))
