@@ -9,6 +9,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.gridspec as gridspec
+from datetime import datetime
 #from matplotlib.backends import _macosx
 
 current_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/'
@@ -20,6 +21,15 @@ current_data = np.genfromtxt(current_data_path + file_name , delimiter = ',',  d
 time_label = np.zeros(current_data.shape[0])
 
 #Build new data structure including relevan variables for study. Each variable is normalized.
+"""
+date_time = current_data[:,0]
+for strings in range(date_time.shape[0]):
+    holder_time = date_time[strings]
+    date_time[strings] = datetime.strptime(holder_time, '%H:%M:%S.%f')
+#date_time = date_time.astype(np.datetime64)
+print (date_time)
+"""
+
 torque = current_data[:,[8]] #Minus one for Yasushi Data File
 torque = torque.astype(np.float)
 torque = ((torque - np.amin(torque)) / (np.amax(torque) - np.amin(torque)))
@@ -88,9 +98,12 @@ centers = kmeans.cluster_centers_
 
 #print (y_kmeans.shape)
 #rint (X.shape)
+#X = X.astype(np.str)
+#y_kmeans = y_kmeans.astype(np.str)
 
-output_data = np.column_stack([X, y_kmeans])
-np.savetxt(destination_data_path + new_file_name, output_data, delimiter=',')
+output_data = np.column_stack([current_data[:,0], X])
+output_data = np.column_stack([output_data, y_kmeans])
+np.savetxt(destination_data_path + new_file_name, output_data, delimiter=',', fmt='%s')
 
 #print(output_data)
 
