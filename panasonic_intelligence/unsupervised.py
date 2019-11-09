@@ -107,7 +107,6 @@ np.savetxt(destination_data_path + new_file_name, output_data, delimiter=',', fm
 
 #print(output_data)
 
-"""
 #3D Plot to visualize relevant variables and classification of clusters within data file or bike trip.
 img = ax.scatter3D(time_label, X[:, 3], X[:, 4], c=y_kmeans, cmap='viridis')
 fig.colorbar(img)
@@ -157,5 +156,3 @@ ax.scatter(time_label,pressure,c=y_kmeans, cmap='viridis', s = dot_size)
 ax.set_ylabel(r'P', size =16)
 
 plt.show()
-
-"""
