@@ -40,8 +40,10 @@ path = os.path.abspath(rel_path)
 if os.path.isfile(path):
     convert_to_csv(path)
 else:
-    (_, _, filenames) = os.walk(path).next()
-    [convert_to_csv(os.path.join(path, f)) for f in filenames]
+    # (_, _, filenames) = # os.walk(path).next()
+    # (_, _, filenames) = os.walk(path)
+    for _, _, filenames in os.walk(path):
+        [convert_to_csv(os.path.join(path, f)) for f in filenames]
 
 
 print('done.')
