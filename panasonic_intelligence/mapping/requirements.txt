@@ -10,6 +10,7 @@ chardet==3.0.4
 Click==7.0
 click-plugins==1.1.1
 cligj==0.5.0
+cycler==0.10.0
 decorator==4.4.1
 defusedxml==0.6.0
 entrypoints==0.3
@@ -31,12 +32,15 @@ ipython-genutils==0.2.0
 ipywidgets==7.5.1
 jedi==0.15.1
 Jinja2==2.10.3
+joblib==0.14.0
 jsonschema==3.1.1
 jupyter==1.0.0
 jupyter-client==5.3.4
 jupyter-console==6.0.0
 jupyter-core==4.6.1
+kiwisolver==1.1.0
 MarkupSafe==1.1.1
+matplotlib==3.1.1
 mistune==0.8.4
 more-itertools==7.2.0
 munch==2.5.0
@@ -57,6 +61,7 @@ pyarrow==0.15.1
 pyasn1==0.4.7
 pyasn1-modules==0.2.7
 Pygments==2.4.2
+pyparsing==2.4.4
 pyproj==2.4.1
 pyrestcli==0.6.11
 pyrsistent==0.15.5
@@ -66,9 +71,13 @@ pyzmq==18.1.0
 qtconsole==4.5.5
 requests==2.22.0
 rsa==4.0
+scikit-learn==0.21.3
+scipy==1.3.1
+seaborn==0.9.0
 Send2Trash==1.5.0
 Shapely==1.6.4.post2
 six==1.13.0
+sklearn==0.0
 terminado==0.8.2
 testpath==0.4.4
 tornado==6.0.3
