@@ -18,12 +18,14 @@
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LSTM
+from tensorflow.keras.layers import Dense, Dropout, LSTM, CuDNNLSTM    #add CuDNNLSTM to run in GPU
 import numpy as np
 import matplotlib.pyplot as plt
+#from tensorflow.contrib.rnn import *
 
+CUDA_VISIBLE_DEVICES = 0 
 #Access data.
-data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/clustered_data/'
+data_path = '/home/andres/Jett-Sen/panasonic_intelligence/clustered_data/'
 data_name = 'clustered_Bike_data.txt'
 
 #Format input data.
@@ -56,10 +58,13 @@ print (y_test.shape)
 model = Sequential()
 
 #Fisrt layer of model LSTM. input shape expects input of the size of each X instance.
-model.add(LSTM(256, input_shape=(1,8), activation='relu', return_sequences=True))
+
+model.add(LSTM(256, input_shape=(1,8), activation='relu', return_sequences=True)) #Uncomment to run on CPU
+#model.add(CuDNNLSTM(256, input_shape = (1,8), return_sequences = True)) #Uncomment to run on GPU
 model.add(Dropout(0.2))
 
-model.add(LSTM(256, activation='relu'))
+model.add(LSTM(256, activation = 'relu')) #Uncomment to run on CPU
+#model.add(CuDNNLSTM(256)) #Uncomment to run on GPU
 model.add(Dropout(0.2))
 
 #Feeds LSTM results into Dense layers for classification.

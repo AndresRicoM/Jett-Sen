@@ -12,9 +12,22 @@ import matplotlib.gridspec as gridspec
 from datetime import datetime
 #from matplotlib.backends import _macosx
 
+<<<<<<< HEAD
 current_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/'
 file_name = 'Bike_data.txt'
 destination_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/clustered_data/'
+=======
+is_yasushi = False
+
+current_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/'
+destination_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/clustered_data/'
+
+if is_yasushi:
+    current_data_path = '/home/yasushi/code/Jett-Sen/hackbikeARICOM/saturn_data/main_data/'
+    destination_data_path = '/home/yasushi/code/Jett-Sen/panasonic_intelligence/clustered_data/'
+
+file_name = '2019-11-11 09:03:37.293894.txt'
+>>>>>>> f8171dc5121f402ca6403d7e23420b698c59e1d5
 new_file_name = 'clustered_' + file_name
 
 current_data = np.genfromtxt(current_data_path + file_name , delimiter = ',',  dtype='str')
@@ -30,40 +43,42 @@ for strings in range(date_time.shape[0]):
 print (date_time)
 """
 
-torque = current_data[:,[8]] #Minus one for Yasushi Data File
+yasushi_data = -1 if is_yasushi else 0 
+
+torque = current_data[:,[8 + yasushi_data]] #Minus one for Yasushi Data File
 torque = torque.astype(np.float)
 torque = ((torque - np.amin(torque)) / (np.amax(torque) - np.amin(torque)))
 
-x_accel = current_data[:,[20]]
+x_accel = current_data[:,[20 + yasushi_data]]
 x_accel = x_accel.astype(np.float)
 x_accel = ((x_accel - np.amin(x_accel)) / (np.amax(x_accel) - np.amin(x_accel)))
 
-y_accel = current_data[:,[21]]
+y_accel = current_data[:,[21+ yasushi_data]]
 y_accel = y_accel.astype(np.float)
 y_accel = ((y_accel - np.amin(y_accel)) / (np.amax(y_accel) - np.amin(y_accel)))
 
 
-z_accel = current_data[:,[22]]
+z_accel = current_data[:,[22 + yasushi_data]]
 z_accel = z_accel.astype(np.float)
 z_accel = ((z_accel - np.amin(z_accel)) / (np.amax(z_accel) - np.amin(z_accel)))
 
-speed = current_data[:,[18]]
+speed = current_data[:,[18 + yasushi_data]]
 speed = speed.astype(np.float)
 speed = ((speed - np.amin(speed)) / (np.amax(speed) - np.amin(speed)))
 
-temp = current_data[:,[23]]
+temp = current_data[:,[23 + yasushi_data]]
 temp = temp.astype(np.float)
 temp = ((temp - np.amin(temp)) / (np.amax(temp) - np.amin(temp)))
 
-light = current_data[:,[24]]
+light = current_data[:,[24 + yasushi_data]]
 light = light.astype(np.float)
 light = ((light - np.amin(light)) / (np.amax(light) - np.amin(light)))
 
-hum = current_data[:,[25]]
+hum = current_data[:,[25 + yasushi_data]]
 hum = hum.astype(np.float)
 hum = ((hum - np.amin(hum)) / (np.amax(hum) - np.amin(hum)))
 
-pressure = current_data[:,[27]]
+pressure = current_data[:,[27 + yasushi_data ]]
 pressure = pressure.astype(np.float)
 pressure = ((pressure - np.amin(pressure)) / (np.amax(pressure) - np.amin(pressure)))
 

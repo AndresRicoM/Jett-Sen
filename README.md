@@ -13,3 +13,5 @@
    Yasushi Sakai - MIT Media Lab
    
 ```
+
+some visible results: http://bit.ly/location-and-clustering
