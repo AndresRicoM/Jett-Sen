@@ -1,5 +1,5 @@
 import matplotlib
-#matplotlib.use('GTK3Agg') #Uncomment when running program through SSH.
+matplotlib.use('GTK3Agg') #Uncomment when running program through SSH.
 
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()  # for plot styling
@@ -12,9 +12,9 @@ import matplotlib.gridspec as gridspec
 from datetime import datetime
 #from matplotlib.backends import _macosx
 
-current_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/'
+current_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/'
 file_name = 'Bike_data.txt'
-destination_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/clustered_data/'
+destination_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/clustered_data/'
 new_file_name = 'clustered_' + file_name
 
 current_data = np.genfromtxt(current_data_path + file_name , delimiter = ',',  dtype='str')
