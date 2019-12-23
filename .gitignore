@@ -1,7 +1,5 @@
 *.pyc
 
-hackbikeARICOM/data/
-hackbikeARICOM/cmd/
-
+.DS_Store
 
 .vscode/
