@@ -25,6 +25,7 @@ import subprocess                                                               
 import pigpio
 import difflib
 import json
+from uuid_gen import get_uuid
 
 cmd_path = '/home/pi/hackbicycle/cmd'
 is_bluetooth = False
@@ -33,21 +34,21 @@ is_bluetooth = False
 #Data collection is enabeled by turning on headlights.
 def data_activation():
     if is_bluetooth :
-    	status_json_path = '/home/pi/status.json'
-    	is_recording = False
-    	with open(status_json_path, 'r') as f:
-    	    try:
-    	        status = json.load(f)
-    	        is_recording = status['record']
-    	    except ValueError:
-    	        print("could not parse json data")
-    	        pass
+        status_json_path = '/home/pi/status.json'
+        is_recording = False
+        with open(status_json_path, 'r') as f:
+            try:
+                status = json.load(f)
+                is_recording = status['record']
+            except ValueError:
+                print("could not parse json data")
+                pass
         return is_recording
     else:
-    	path = '/home/pi/Jett-Sen/sensors/cmd'
-    	data_active = subprocess.check_output([ path + '/getHeadLight' , '-1'], shell=True) #Gets HeadLight Status (0 = OFF , 1 = ON)
+        path = '/home/pi/Jett-Sen/sensors/cmd'
+        data_active = subprocess.check_output([ path + '/getHeadLight' , '-1'], shell=True) #Gets HeadLight Status (0 = OFF , 1 = ON)
         #Returns float with headlight value.
-    	return  int(data_active) == 1
+        return  int(data_active) == 1
 
 
 #Function for extracting bike sensor data.
@@ -125,7 +126,7 @@ def set_light(flag):
 if __name__== "__main__":
 
     main_path = '/home/pi/Jett-Sen/sensors/'
-    data_path = '/home/pi/Jett-Sen/sensors/data/main_data' #Change last two lines depending on the bike running the program. 
+    data_path = '/home/pi/Jett-Sen/sensors/data/main_data/' #Change last two lines depending on the bike running the program. 
     print("TerMITe Connecting....")
 
     num_tries = 5
@@ -155,11 +156,13 @@ if __name__== "__main__":
     while True: #Main loop.
         if (not data_acquisition) and data_activation(): #Check if headlight has been activated.
             data_acquisition = True
-            datestring = str(datetime.datetime.now())
-            datestring = datestring + ".txt"
-            new_file = open(data_path + datestring,"w")                     #Create new file with data stamp name.
+            uuid_name = get_uuid()
+            uuid_name = uuid_name + ".txt"
+            #datestring = str(datetime.datetime.now())
+            #datestring = datestring + ".txt"
+            new_file = open(data_path + uuid_name,"w")                     #Create new file with data stamp name.
             if not is_bluetooth:
-            	subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
+                subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
             else :
                 set_light(data_acquisition)
                 
