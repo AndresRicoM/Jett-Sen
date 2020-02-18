@@ -19,7 +19,7 @@ def is_connected(hostname):
         pass
     return False
 
-# destination = 'eater:/var/www/bike_data'
+destination = 'eater:/var/www/bike_data'
 
 def clean_up_files(directory):
     for root, dirs, files in walk(directory):
