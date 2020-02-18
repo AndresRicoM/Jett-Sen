@@ -44,4 +44,4 @@ def get_uuid():
     else:
         get_uuid()
 
-print(get_uuid())
+#print(get_uuid())
