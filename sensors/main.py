@@ -149,7 +149,8 @@ if __name__== "__main__":
     print("Ready To Collect Data!")
 
     if not is_bluetooth:
-        subprocess.call(['sudo python3 ' + main_path +  'data_indicator_light.py 1' , '-1'], shell=True)
+	print('Blue Light!')
+        #subprocess.call(['sudo python3 ' + main_path +  'data_indicator_light.py 1' , '-1'], shell=True)
 
     data_acquisition = False #Variable for activation and deactivation of data collection.
 
@@ -162,7 +163,8 @@ if __name__== "__main__":
             #datestring = datestring + ".txt"
             new_file = open(data_path + uuid_name,"w")                     #Create new file with data stamp name.
             if not is_bluetooth:
-                subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
+		print('Red Light')
+                #subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 0' , '-1'], shell=True) #Turn indicator to RED.
             else :
                 set_light(data_acquisition)
                 
@@ -172,7 +174,8 @@ if __name__== "__main__":
             data_acquisition = False
             new_file.close()                                                #Close file when collection is disabeled.
             if not is_bluetooth:
-                subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
+		print('Red Light')
+                #subprocess.call(['sudo python3 /home/pi/Jett-Sen/sensors/data_indicator_light.py 1' , '-1'], shell=True) #Activate BLUE light on bike indicator.
             else:
                 set_light(data_acquisition)
             print("Data Collection Diabeled")
