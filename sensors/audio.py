@@ -33,7 +33,7 @@ if __name__ == '__main__':
 	#record_audio(*sys.argv[1:])
 	main_path = '/home/pi/Jett-Sen/sensors/'
 	data_path = '/home/pi/Jett-Sen/sensors/data/audio_data/' #Change last two lines depending on the bike running the program.
-
+	print ('Ready to begin!')
 	while True: #Main loop.
 
 		if (not data_acquisition) and data_activation(): #Check if headlight has been activated.
