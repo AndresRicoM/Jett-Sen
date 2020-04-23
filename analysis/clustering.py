@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('GTK3Agg') #Uncomment when running program through SSH.
+#matplotlib.use('GTK3Agg') #Uncomment when running program through SSH.
 
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()  # for plot styling
@@ -12,28 +12,23 @@ import matplotlib.gridspec as gridspec
 from datetime import datetime
 #from matplotlib.backends import _macosx
 
-<<<<<<< HEAD
-current_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/'
-file_name = 'Bike_data.txt'
-destination_data_path = '/home/andres/Jett-Sen/panasonic_intelligence/clustered_data/'
-=======
-is_yasushi = False
-
-current_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/'
-destination_data_path = '/home/aricom/Desktop/Jett-Sen/panasonic_intelligence/clustered_data/'
-
-if is_yasushi:
-    current_data_path = '/home/yasushi/code/Jett-Sen/hackbikeARICOM/saturn_data/main_data/'
-    destination_data_path = '/home/yasushi/code/Jett-Sen/panasonic_intelligence/clustered_data/'
-
-file_name = '2019-11-11 09:03:37.293894.txt'
->>>>>>> f8171dc5121f402ca6403d7e23420b698c59e1d5
+current_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/test_data/'
+file_name = 'hackbike-jupyter-006f16e0-3235-11ea-9980-e166d58b4532.csv'
+destination_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/clustered_data/'
 new_file_name = 'clustered_' + file_name
+
+is_yasushi = True
+
+#if is_yasushi:
+#    current_data_path = '/home/yasushi/code/Jett-Sen/hackbikeARICOM/saturn_data/main_data/'
+#    destination_data_path = '/home/yasushi/code/Jett-Sen/panasonic_intelligence/clustered_data/'
+
+#file_name = '2019-11-11 09:03:37.293894.txt'
 
 current_data = np.genfromtxt(current_data_path + file_name , delimiter = ',',  dtype='str')
 time_label = np.zeros(current_data.shape[0])
 
-#Build new data structure including relevan variables for study. Each variable is normalized.
+#Build new data structure including relevant variables for study. Each variable is normalized.
 """
 date_time = current_data[:,0]
 for strings in range(date_time.shape[0]):
@@ -43,7 +38,7 @@ for strings in range(date_time.shape[0]):
 print (date_time)
 """
 
-yasushi_data = -1 if is_yasushi else 0 
+yasushi_data = -1 if is_yasushi else 0
 
 torque = current_data[:,[8 + yasushi_data]] #Minus one for Yasushi Data File
 torque = torque.astype(np.float)
