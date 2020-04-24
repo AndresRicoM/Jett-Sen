@@ -16,7 +16,7 @@ def combine(input, output, file_name):
 
 
 input = '/Users/AndresRico/Desktop/Jett-Sen/analysis/test_data/'
-output = '/Users/AndresRico/Desktop/Jett-Sen/analysis/clustered_data/'
+output = '/Users/AndresRico/Desktop/Jett-Sen/analysis/combined_data/'
 file = 'combined_jupyter.csv'
 
 combine(input, output, file)

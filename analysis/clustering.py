@@ -12,8 +12,8 @@ import matplotlib.gridspec as gridspec
 from datetime import datetime
 #from matplotlib.backends import _macosx
 
-current_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/test_data/'
-file_name = 'hackbike-jupyter-006f16e0-3235-11ea-9980-e166d58b4532.csv'
+current_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/combined_data/'
+file_name = 'combined_jupyter.csv'
 destination_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/clustered_data/'
 new_file_name = 'clustered_' + file_name
 
