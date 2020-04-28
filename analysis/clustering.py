@@ -12,9 +12,9 @@ import matplotlib.gridspec as gridspec
 from datetime import datetime
 #from matplotlib.backends import _macosx
 
-current_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/combined_data/'
-file_name = 'combined_jupyter.csv'
-destination_data_path = '/Users/AndresRico/Desktop/Jett-Sen/analysis/clustered_data/'
+current_data_path = '/Users/AndresRico/Desktop/working/Jett-Sen/analysis/combined_data/'
+file_name = 'combined_jupyter.csv' #'hackbike-jupyter-006f16e0-3235-11ea-9980-e166d58b4532.csv' #'combined_jupyter.csv'
+destination_data_path = '/Users/AndresRico/Desktop/working/Jett-Sen/analysis/clustered_data/'
 new_file_name = 'clustered_' + file_name
 
 is_yasushi = True
@@ -91,7 +91,7 @@ X = np.hstack((X,light))
 X = np.hstack((X,hum))
 X = np.hstack((X,pressure))
 
-plt.style.use('dark_background')
+#plt.style.use('dark_background')
 
 fig = plt.figure()
 ax = plt.axes(projection='3d')
@@ -100,7 +100,7 @@ ax.set_ylabel('Speed')
 ax.set_zlabel('Torque')
 
 #Run K means with n clusters.
-kmeans = KMeans(n_clusters=5)
+kmeans = KMeans(n_clusters=7)
 kmeans.fit(X)
 y_kmeans = kmeans.predict(X) #This is the clustered vector.
 
@@ -115,10 +115,17 @@ output_data = np.column_stack([current_data[:,0], X])
 output_data = np.column_stack([output_data, y_kmeans])
 np.savetxt(destination_data_path + new_file_name, output_data, delimiter=',', fmt='%s')
 
+plt.figure(figsize=(6, 6))
+plt.scatter(time_label,x_accel,c=y_kmeans, cmap='plasma')
+plt.title('X Acceleration Single Trip Clustering', fontsize=30)
+#plt.xlabel(r'Time', fontsize=25)
+#plt.ylabel('Acceleration', fontsize=25);
+
+plt.show()
 #print(output_data)
 
 #3D Plot to visualize relevant variables and classification of clusters within data file or bike trip.
-img = ax.scatter3D(time_label, X[:, 3], X[:, 4], c=y_kmeans, cmap='viridis')
+img = ax.scatter3D(time_label, X[:, 3], X[:, 4], c=y_kmeans, cmap='plasma') #viridis
 fig.colorbar(img)
 
 plt.show()
@@ -126,43 +133,67 @@ plt.show()
 #Plot each variable with respect to sequence of bike trip. (Time)
 gs = gridspec.GridSpec(9,1)
 fig = plt.figure()
+plt.title('Multiple Trip Fusion Data Clustering', fontsize=30)
+#plt.ylabel('Normalized Fusion Variables', fontsize=25)
+#plt.xlabel('Time', fontsize=25)
+plt.xticks([])
+plt.yticks([])
 dot_size = 16
 
 ax = fig.add_subplot(gs[0])
-ax.scatter(time_label,x_accel,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'X', size =16)
+ax.scatter(time_label,x_accel,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'X-Acc', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[1])
-ax.scatter(time_label,y_accel,c=y_kmeans, cmap='viridis', s = dot_size )
-ax.set_ylabel(r'Y', size =16)
+ax.scatter(time_label,y_accel,c=y_kmeans, cmap='plasma', s = dot_size )
+ax.set_ylabel(r'Y-Acc', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 ###ax.scatter3D(centers[:, 0], centers[:, 1], centers[:, 2], c='black', s=200, alpha=0.5);
 
 ax = fig.add_subplot(gs[2])
-ax.scatter(time_label,z_accel,c=y_kmeans, cmap='viridis', s = dot_size )
-ax.set_ylabel(r'Z', size =16)
+ax.scatter(time_label,z_accel,c=y_kmeans, cmap='plasma', s = dot_size )
+ax.set_ylabel(r'Z-Acc', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[3])
-ax.scatter(time_label,speed,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'S', size =16)
+ax.scatter(time_label,speed,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Speed', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[4])
-ax.scatter(time_label,torque,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'To', size =16)
+ax.scatter(time_label,torque,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Torq', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[5])
-ax.scatter(time_label,temp,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'T', size =16)
+ax.scatter(time_label,temp,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Temp', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[6])
-ax.scatter(time_label,light,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'L', size =16)
+ax.scatter(time_label,light,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Light', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[7])
-ax.scatter(time_label,hum,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'H', size =16)
+ax.scatter(time_label,hum,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Hum', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 ax = fig.add_subplot(gs[8])
-ax.scatter(time_label,pressure,c=y_kmeans, cmap='viridis', s = dot_size)
-ax.set_ylabel(r'P', size =16)
+ax.scatter(time_label,pressure,c=y_kmeans, cmap='plasma', s = dot_size)
+ax.set_ylabel(r'Press', size =15)
+ax.set_xlabel(r'Time Sequenced Trips', size =15)
+ax.set_yticklabels([])
+ax.set_xticklabels([])
 
 plt.show()
