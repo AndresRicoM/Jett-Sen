@@ -10,9 +10,12 @@ from sklearn.metrics import silhouette_samples
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.gridspec as gridspec
 from sklearn import preprocessing
+import pickle
 
 current_data_path = '/Users/AndresRico/Desktop/working/Jett-Sen/analysis/combined_data/'
-file_name = 'combined_jupyter.csv' #'hackbike-jupyter-006f16e0-3235-11ea-9980-e166d58b4532.csv' #'combined_jupyter.csv'
+file_name =  'combined_jupyter.csv'#'combined_jupyter.csv' #'hackbike-jupyter-006f16e0-3235-11ea-9980-e166d58b4532.csv' #'combined_jupyter.csv'
+saving_path = '/Users/AndresRico/Desktop/working/Jett-Sen/analysis/sse/'
+file = 'combined_jupyter.txt'
 
 current_data = np.genfromtxt(current_data_path + file_name, delimiter = ',',  dtype='str')
 time_label = np.zeros(current_data.shape[0])
@@ -70,8 +73,6 @@ X = np.hstack((X,light))
 X = np.hstack((X,hum))
 X = np.hstack((X,pressure))
 
-print(X)
-
 sse = []
 list_k = list(range(1, 50))
 
@@ -80,10 +81,13 @@ for k in list_k:
     km.fit(X)
     sse.append(km.inertia_)
 
-# Plot sse against k
 
+# Plot sse against k
+with open(saving_path + file, "wb") as fp:   #Pickling
+        pickle.dump(sse, fp)
 #plt.style.use('dark_background')
 
+"""
 plt.figure(figsize=(6, 6))
 plt.plot(list_k, sse, '-o')
 plt.title('Elbow Curve Analysis - Multiple Trip Fusion Data', fontsize=30)
@@ -91,3 +95,4 @@ plt.xlabel(r'Number of clusters *k*', fontsize=25)
 plt.ylabel('Sum of Squared Distance', fontsize=25);
 
 plt.show()
+"""
