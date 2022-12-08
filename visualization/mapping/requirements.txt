@@ -5,7 +5,7 @@ bleach==3.1.0
 cachetools==3.1.1
 carto==1.8.1
 cartoframes==1.0b3
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 click-plugins==1.1.1
